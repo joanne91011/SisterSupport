@@ -5,14 +5,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-
+//讀檔主要的地方
 public class jFile
 {
-    public string path { get; set; } = @"C:\Users\JasonWang\.spyder-py3\input_example.txt"; //預設路徑
-
-    public List<jXYRange> lst_XYRange = new List<jXYRange>();
-    public List<jXYPoint> lst_XYPoint = new List<jXYPoint>();
-    public List<jXYObstacle> lst_XYObstacle = new List<jXYObstacle>();
+    public string path { get; set; } = @"C:\CodeData\input_example.txt"; //預設路徑
+    
+    //List 讀檔資料存放區(整理完)
+    public List<jXYRange> lst_XYRange = new List<jXYRange>();//LIST 指向參數定義
+    public List<jXYPoint> lst_XYPoint = new List<jXYPoint>();//LIST 指向參數定義
+    public List<jXYObstacle> lst_XYObstacle = new List<jXYObstacle>();//LIST 指向參數定義
 
 
     public List<string> filePara()
@@ -31,6 +32,7 @@ public class jFile
             }
             switch (chgBlock)
             {
+                //畫布範圍
                 case 1:
                     if (line.IndexOf(@")(") > -1)
                     {
@@ -57,6 +59,7 @@ public class jFile
                     }
 
                     break;
+                    //障礙物
                 case 2:
 
                     if (line.IndexOf(@")(") > -1)
@@ -83,6 +86,7 @@ public class jFile
                         }
                     }
                     break;
+                    //點
                 case 3:
                     int _x = 0, _y = 0;
                     _x = int.Parse(line.Split(new char[] { '(', ',', ')' }, StringSplitOptions.RemoveEmptyEntries)[0]);
